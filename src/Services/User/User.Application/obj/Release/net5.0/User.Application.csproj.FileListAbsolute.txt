@@ -1,0 +1,15 @@
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\bin\Release\net5.0\User.Application.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\bin\Release\net5.0\User.Application.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\bin\Release\net5.0\ref\User.Application.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\bin\Release\net5.0\User.Application.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\bin\Release\net5.0\User.Domain.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\bin\Release\net5.0\User.Domain.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.csprojAssemblyReference.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.csproj.CopyComplete
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\ref\User.Application.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Application\obj\Release\net5.0\User.Application.pdb
