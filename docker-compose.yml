@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  user.api:
+  sensei_user_service:
     image: ${DOCKER_REGISTRY-}userapi
     build:
       context: .
@@ -15,7 +15,7 @@ services:
   portainer:
     image: portainer/portainer-ce
 
-  auth:
+  sensei_auth_service:
     image: ${DOCKER_REGISTRY-}auth
     build:
       context: .

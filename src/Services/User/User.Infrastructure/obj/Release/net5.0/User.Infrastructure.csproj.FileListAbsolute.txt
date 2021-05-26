@@ -1,0 +1,17 @@
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Infrastructure.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\ref\User.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Infrastructure.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Application.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Domain.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Application.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Release\net5.0\User.Domain.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.csprojAssemblyReference.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.csproj.CopyComplete
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\ref\User.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Release\net5.0\User.Infrastructure.pdb

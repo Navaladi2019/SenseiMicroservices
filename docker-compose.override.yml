@@ -1,7 +1,7 @@
 version: '3.4'
 
 services:
-  user.api:
+  sensei_user_service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - "DatabaseSettings:ConnectionString=mongodb://SenseiMongodb:27017"

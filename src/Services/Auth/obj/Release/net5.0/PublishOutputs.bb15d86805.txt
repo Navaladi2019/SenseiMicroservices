@@ -1,0 +1,11 @@
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Auth.exe
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\appsettings.Development.json
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\appsettings.json
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Auth.dll
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Auth.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Auth.runtimeconfig.json
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Auth.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Microsoft.OpenApi.dll
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.Swagger.dll
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerGen.dll
+E:\Sensei\SenseiMicroservices\src\Services\Auth\obj\Release\net5.0\PubTmp\Out\Swashbuckle.AspNetCore.SwaggerUI.dll
