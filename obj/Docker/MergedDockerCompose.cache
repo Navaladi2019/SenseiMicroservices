@@ -1,0 +1,61 @@
+services:
+  SenseiMongodb:
+    container_name: SenseiMongodb
+    image: mongo
+    ports:
+    - target: 27017
+    restart: always
+    volumes:
+    - SeseiMongoDb_data:/data/db:rw
+  auth:
+    build:
+      context: D:\Sensei\SenseiMicroservices
+      dockerfile: src/Services/Auth/Dockerfile
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+    image: auth
+    ports:
+    - target: 80
+  mongo-express:
+    depends_on:
+      SenseiMongodb:
+        condition: service_started
+    environment:
+      ME_CONFIG_MONGODB_PORT: '27017'
+      ME_CONFIG_MONGODB_SERVER: SenseiMongodb
+    image: mongo-express
+    ports:
+    - published: 8081
+      target: 8081
+    restart: always
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    ports:
+    - published: 8080
+      target: 8000
+    - published: 9000
+      target: 9000
+    restart: always
+    volumes:
+    - portainer_data:/data:rw
+    - /var/run/docker.sock:/var/run/docker.sock:rw
+  user.api:
+    build:
+      context: D:\Sensei\SenseiMicroservices
+      dockerfile: src/Services/User/User.Api/Dockerfile
+    depends_on:
+      SenseiMongodb:
+        condition: service_started
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      DatabaseSettings:ConnectionString: mongodb://SenseiMongodb:27017
+    image: userapi
+    ports:
+    - published: 5000
+      target: 80
+    restart: always
+version: '3.4'
+volumes:
+  SeseiMongoDb_data: {}
+  portainer_data: {}

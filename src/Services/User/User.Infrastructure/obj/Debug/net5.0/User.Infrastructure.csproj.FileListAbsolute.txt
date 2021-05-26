@@ -1,0 +1,6 @@
+D:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Debug\net5.0\User.Application.dll
+D:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\bin\Debug\net5.0\User.Domain.dll
+D:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Debug\net5.0\User.Infrastructure.csprojAssemblyReference.cache
+D:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Debug\net5.0\User.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Debug\net5.0\User.Infrastructure.AssemblyInfoInputs.cache
+D:\Sensei\SenseiMicroservices\src\Services\User\User.Infrastructure\obj\Debug\net5.0\User.Infrastructure.AssemblyInfo.cs

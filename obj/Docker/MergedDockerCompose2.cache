@@ -1,0 +1,111 @@
+services:
+  SenseiMongodb:
+    container_name: SenseiMongodb
+    image: mongo
+    ports:
+    - target: 27017
+    restart: always
+    volumes:
+    - SeseiMongoDb_data:/data/db:rw
+  auth:
+    build:
+      context: E:\Sensei\SenseiMicroservices
+      dockerfile: src/Services/Auth/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: Auth
+      target: base
+    container_name: Auth
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: auth:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/Auth.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - target: 80
+    tty: true
+    volumes:
+    - E:\Sensei\SenseiMicroservices\src\Services\Auth:/app:rw
+    - C:\Users\Dell\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Dell\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Dell\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Dell\.nuget\packages:/root/.nuget/packages:ro
+    - E:\Sensei\SenseiMicroservices:/src:rw
+  mongo-express:
+    depends_on:
+      SenseiMongodb:
+        condition: service_started
+    environment:
+      ME_CONFIG_MONGODB_PORT: '27017'
+      ME_CONFIG_MONGODB_SERVER: SenseiMongodb
+    image: mongo-express
+    ports:
+    - published: 8081
+      target: 8081
+    restart: always
+  portainer:
+    container_name: portainer
+    image: portainer/portainer-ce
+    ports:
+    - published: 8080
+      target: 8000
+    - published: 9000
+      target: 9000
+    restart: always
+    volumes:
+    - portainer_data:/data:rw
+    - /var/run/docker.sock:/var/run/docker.sock:rw
+  user.api:
+    build:
+      context: E:\Sensei\SenseiMicroservices
+      dockerfile: src/Services/User/User.Api/Dockerfile
+      labels:
+        com.microsoft.created-by: visual-studio
+        com.microsoft.visual-studio.project-name: User.Api
+      target: base
+    container_name: User.Api
+    depends_on:
+      SenseiMongodb:
+        condition: service_started
+    entrypoint: tail -f /dev/null
+    environment:
+      ASPNETCORE_ENVIRONMENT: Development
+      ASPNETCORE_LOGGING__CONSOLE__DISABLECOLORS: "true"
+      DOTNET_USE_POLLING_FILE_WATCHER: '1'
+      DatabaseSettings:ConnectionString: mongodb://SenseiMongodb:27017
+      NUGET_FALLBACK_PACKAGES: /root/.nuget/fallbackpackages
+    image: userapi:dev
+    labels:
+      com.microsoft.visualstudio.debuggee.arguments: ' --additionalProbingPath /root/.nuget/packages
+        --additionalProbingPath /root/.nuget/fallbackpackages  "/app/bin/Debug/net5.0/User.Api.dll"'
+      com.microsoft.visualstudio.debuggee.killprogram: /bin/sh -c "if PID=$$(pidof
+        dotnet); then kill $$PID; fi"
+      com.microsoft.visualstudio.debuggee.program: dotnet
+      com.microsoft.visualstudio.debuggee.workingdirectory: /app
+    ports:
+    - published: 5000
+      target: 80
+    restart: always
+    tty: true
+    volumes:
+    - E:\Sensei\SenseiMicroservices\src\Services\User\User.Api:/app:rw
+    - C:\Users\Dell\vsdbg\vs2017u5:/remote_debugger:rw
+    - C:\Users\Dell\AppData\Roaming\ASP.NET\Https:/root/.aspnet/https:ro
+    - C:\Users\Dell\AppData\Roaming\Microsoft\UserSecrets:/root/.microsoft/usersecrets:ro
+    - C:\Program Files\dotnet\sdk\NuGetFallbackFolder:/root/.nuget/fallbackpackages:ro
+    - C:\Users\Dell\.nuget\packages:/root/.nuget/packages:ro
+    - E:\Sensei\SenseiMicroservices:/src:rw
+version: '3.4'
+volumes:
+  SeseiMongoDb_data: {}
+  portainer_data: {}

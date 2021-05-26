@@ -1,0 +1,27 @@
+version: '3.4'
+
+services:
+  user.api:
+    image: ${DOCKER_REGISTRY-}userapi
+    build:
+      context: .
+      dockerfile: src/Services/User/User.Api/Dockerfile
+
+  SenseiMongodb:
+    container_name: SenseiMongodb
+    image: mongo
+  mongo-express:
+    image: mongo-express
+  portainer:
+    image: portainer/portainer-ce
+
+  auth:
+    image: ${DOCKER_REGISTRY-}auth
+    build:
+      context: .
+      dockerfile: src/Services/Auth/Dockerfile
+
+volumes:
+  SeseiMongoDb_data:
+  portainer_data:
+

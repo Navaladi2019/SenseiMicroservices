@@ -1,0 +1,52 @@
+version: '3.4'
+
+services:
+  user.api:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - "DatabaseSettings:ConnectionString=mongodb://SenseiMongodb:27017"
+    ports:
+      - "5000:80"
+    restart: always
+    depends_on:
+      - SenseiMongodb
+  SenseiMongodb:
+    container_name: SenseiMongodb
+    ports:
+      - "27017"
+    volumes:
+      -  SeseiMongoDb_data:/data/db
+    restart: always
+
+  mongo-express:
+    restart: always
+    ports:
+      - "8081:8081"
+    environment:
+      ME_CONFIG_MONGODB_SERVER: SenseiMongodb
+      ME_CONFIG_MONGODB_PORT: "27017"
+    depends_on:
+      - SenseiMongodb
+  portainer:
+    container_name: portainer
+    restart: always
+    ports:
+      - "8080:8000"
+      - "9000:9000"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+      - portainer_data:/data
+
+
+
+
+
+
+
+
+  auth:
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+    ports:
+      - "80"
+  
