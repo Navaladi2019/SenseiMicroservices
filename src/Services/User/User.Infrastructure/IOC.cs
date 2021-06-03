@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using User.Application;
+using User.Application.IRepository;
 using User.Infrastructure.Repositories;
 
 namespace User.Infrastructure
@@ -15,6 +16,9 @@ namespace User.Infrastructure
         {
             services.AddScoped<IMongoContext, MongoContext>();
             services.AddScoped<IUserRepository, UserRepository>();
+            services.AddScoped<ISignInRepository, SignInRepository>();
+            services.AddScoped<IAuthTokenSettingRepository, AuthTokenSettingRepository>();
+            services.AddScoped<IForgetPasswordSettingsRepository, ForgetPasswordSettingsRepository>();
             return services;
         }
     }

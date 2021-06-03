@@ -7,15 +7,14 @@ services:
     restart: always
     volumes:
     - SeseiMongoDb_data:/data/db:rw
-  auth:
-    build:
-      context: E:\Sensei\SenseiMicroservices
-      dockerfile: src/Services/Auth/Dockerfile
-    environment:
-      ASPNETCORE_ENVIRONMENT: Development
-    image: auth
+  consul:
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    container_name: consul
+    hostname: consul
+    image: consul:latest
     ports:
-    - target: 80
+    - published: 8500
+      target: 8500
   mongo-express:
     depends_on:
       SenseiMongodb:
@@ -40,7 +39,7 @@ services:
     volumes:
     - portainer_data:/data:rw
     - /var/run/docker.sock:/var/run/docker.sock:rw
-  user.api:
+  sensei_user_service:
     build:
       context: E:\Sensei\SenseiMicroservices
       dockerfile: src/Services/User/User.Api/Dockerfile
@@ -49,10 +48,31 @@ services:
         condition: service_started
     environment:
       ASPNETCORE_ENVIRONMENT: Development
-      DatabaseSettings:ConnectionString: mongodb://SenseiMongodb:27017
+      DatabaseSettings__ConnectionString: mongodb://SenseiMongodb:27017
+      ServiceConfig__serviceAddress: http://sensei_user_service:80
+      ServiceConfig__serviceDiscoveryAddress: http://consul:8500
+      ServiceConfig__serviceId: sensei_user_service_1
+      ServiceConfig__serviceName: sensei_user_service
     image: userapi
     ports:
-    - published: 5000
+    - published: 9009
+      target: 80
+    restart: always
+  senseigateway:
+    build:
+      context: E:\Sensei\SenseiMicroservices
+      dockerfile: src/ApiGateway/Dockerfile
+    container_name: senseigateway
+    depends_on:
+      consul:
+        condition: service_started
+      sensei_user_service:
+        condition: service_started
+    environment:
+      BaseUrl: http://localhost:4504
+    image: senseigatewayapi
+    ports:
+    - published: 4504
       target: 80
     restart: always
 version: '3.4'

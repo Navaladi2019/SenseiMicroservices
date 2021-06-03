@@ -1,0 +1,12 @@
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\bin\Debug\net5.0\ConsolServiceDiscovery.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\bin\Debug\net5.0\ConsolServiceDiscovery.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\bin\Debug\net5.0\ref\ConsolServiceDiscovery.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\bin\Debug\net5.0\ConsolServiceDiscovery.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ref\ConsolServiceDiscovery.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Common\ConsolServiceDiscovery\obj\Debug\net5.0\ConsolServiceDiscovery.csprojAssemblyReference.cache

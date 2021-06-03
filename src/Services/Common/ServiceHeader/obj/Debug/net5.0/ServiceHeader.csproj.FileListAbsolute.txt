@@ -1,0 +1,12 @@
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\bin\Debug\net5.0\ServiceHeader.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\bin\Debug\net5.0\ServiceHeader.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\bin\Debug\net5.0\ref\ServiceHeader.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\bin\Debug\net5.0\ServiceHeader.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.csprojAssemblyReference.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ref\ServiceHeader.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\ServiceHeader\obj\Debug\net5.0\ServiceHeader.pdb

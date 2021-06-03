@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace User.Domain
 {
-    public  class User
+    public  class UserDto
     {
         [BsonId]
         [BsonRepresentation(BsonType.ObjectId)]
@@ -16,6 +16,7 @@ namespace User.Domain
         public UserProfile UserProfile { get; set; }
         public SocialAccounts SocialAccounts { get; set; }
         public UserCredential UserCredential { get; set; }
+        [BsonIgnoreIfNull]
         public List<string> Roles { get; set; }
 
         public DateTime? CreatedAt { get; set; }
@@ -28,9 +29,11 @@ namespace User.Domain
         public string Salt { get; set; }
         public string SaltedPassword { get; set; }
 
+        [BsonIgnoreIfNull]
         public List<ResetPassword> ResetPasswordKeys { get; set; }
     }
 
+    [BsonIgnoreExtraElements]
 
     public class ResetPassword
     {
@@ -38,7 +41,7 @@ namespace User.Domain
 
         public DateTime? ExpiresAt { get; set; }
 
-        public int IsUsed { get; set; }
+        public string UrlForDevelopment { get; set; }
     }
 
     public class UserProfile
@@ -65,5 +68,7 @@ namespace User.Domain
 
        
     }
+
+
 
 }

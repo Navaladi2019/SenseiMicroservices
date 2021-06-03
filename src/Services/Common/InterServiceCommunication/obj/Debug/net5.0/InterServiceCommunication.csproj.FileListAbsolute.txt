@@ -1,0 +1,17 @@
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\InterServiceCommunication.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\InterServiceCommunication.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\ref\InterServiceCommunication.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\InterServiceCommunication.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\ConsolServiceDiscovery.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\User.Domain.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\User.Domain.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\bin\Debug\net5.0\ConsolServiceDiscovery.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.csprojAssemblyReference.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.csproj.CopyComplete
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\ref\InterServiceCommunication.dll
+E:\Sensei\SenseiMicroservices\src\Services\Common\InterServiceCommunication\obj\Debug\net5.0\InterServiceCommunication.pdb

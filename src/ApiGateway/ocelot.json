@@ -1,0 +1,99 @@
+{
+
+  "GlobalConfiguration": {
+    "BaseUrl": "http://localhost:80",
+    "ServiceDiscoveryProvider": {
+      "Host": "consul",
+      "Port": 8500,
+      "Type": "Consul"
+    }
+  },
+  "SwaggerEndPoints": [
+    {
+      "Key": "sensei_user_service",
+      "Config": [
+        {
+          "Name": "User API",
+          "Version": "v1",
+          "Service": {
+            "Name": "sensei_user_service",
+            "Path": "/swagger/v1/swagger.json"
+          }
+        }
+
+
+      ]
+    }
+
+  ],
+
+  "Routes": [
+
+    {
+      "DownstreamPathTemplate": "/v1/Auth",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/test",
+      "UpstreamHttpMethod": [ "Get" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JWTKeyValidation"
+      },
+      "AddHeadersToRequest": {
+        "UserSerialId": "Claims[UserId] > value > |",
+        "Role": "Claims[Role] > value > |",
+        "jti": "Claims[jti] > value > |"
+      },
+      "RouteClaimsRequirement": {
+        "Role": "Tutor"
+      },
+
+      "SwaggerKey": "sensei_user_service"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/Auth/SignIn",
+      "ServiceName": "sensei_user_service",
+      "DownstreamHttpMethod": "Post",
+      "UpstreamPathTemplate": "/SignIn",
+      "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": null
+      },
+      "SwaggerKey": "sensei_user_service"
+
+    },
+    {
+      "DownstreamPathTemplate": "/v1/User/SignUp",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/SignUp",
+      "DownstreamHttpMethod": "Post",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "sensei_user_service"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/Auth/ResetForgetPassword",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/ResetForgetPassword",
+      "DownstreamHttpMethod": "Post",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "sensei_user_service"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/Auth/ResetPassword",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/ResetPassword",
+      "DownstreamHttpMethod": "Post",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "sensei_user_service"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/Auth/ForgetPassword",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/ForgetPassword",
+      "DownstreamHttpMethod": "Post",
+      "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "sensei_user_service"
+    }
+
+
+  ]
+
+}

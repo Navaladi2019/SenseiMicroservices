@@ -1,15 +1,19 @@
 version: '3.4'
-
 services:
   sensei_user_service:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
-      - "DatabaseSettings:ConnectionString=mongodb://SenseiMongodb:27017"
+      - "DatabaseSettings__ConnectionString=mongodb://SenseiMongodb:27017"
+      - ServiceConfig__serviceDiscoveryAddress=http://consul:8500
+      - ServiceConfig__serviceAddress=http://sensei_user_service:80
+      - ServiceConfig__serviceName=sensei_user_service
+      - ServiceConfig__serviceId=sensei_user_service_1
     ports:
-      - "5000:80"
+      - "9009:80"
     restart: always
     depends_on:
       - SenseiMongodb
+
   SenseiMongodb:
     container_name: SenseiMongodb
     ports:
@@ -27,6 +31,17 @@ services:
       ME_CONFIG_MONGODB_PORT: "27017"
     depends_on:
       - SenseiMongodb
+
+  senseigateway:
+    container_name: senseigateway
+    restart: always
+    ports:
+      - "4504:80"
+    environment:
+       BaseUrl: "http://localhost:4504"
+    depends_on:
+      - sensei_user_service
+      - consul
   portainer:
     container_name: portainer
     restart: always
@@ -36,17 +51,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock
       - portainer_data:/data
-
-
-
-
-
-
-
-
-  auth:
-    environment:
-      - ASPNETCORE_ENVIRONMENT=Development
+  consul:
     ports:
-      - "80"
+      - "8500:8500"
   

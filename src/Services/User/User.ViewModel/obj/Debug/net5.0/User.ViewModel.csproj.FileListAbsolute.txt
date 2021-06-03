@@ -1,0 +1,15 @@
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\bin\Debug\net5.0\User.ViewModel.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\bin\Debug\net5.0\User.ViewModel.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\bin\Debug\net5.0\ref\User.ViewModel.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\bin\Debug\net5.0\User.ViewModel.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\bin\Debug\net5.0\User.Domain.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\bin\Debug\net5.0\User.Domain.pdb
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.csprojAssemblyReference.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.csproj.CopyComplete
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\ref\User.ViewModel.dll
+E:\Sensei\SenseiMicroservices\src\Services\User\User.ViewModel\obj\Debug\net5.0\User.ViewModel.pdb

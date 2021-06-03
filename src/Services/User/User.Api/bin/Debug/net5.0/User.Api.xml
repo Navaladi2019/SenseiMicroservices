@@ -1,0 +1,120 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>User.Api</name>
+    </assembly>
+    <members>
+        <member name="M:User.Api.Controllers.AuthController.SignIn(User.ViewModel.model.UserSignInModel)">
+            <summary>
+            Sign In method provides token which has to be used for authentication for the remaining calls
+            </summary>
+            <param name="UserSignInModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.AuthController.GetAuthSettings(System.String)">
+            <summary>
+            Gets Auth setting for the token validation
+            </summary>
+            <param name="AuthSettingId"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.AuthController.InsertAuthSettings(User.Domain.AuthTokenSetting)">
+            <summary>
+            Inserts Auth setting this should not be exposed outside.
+            </summary>
+            <param name="AuthTokenSetting"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.AuthController.InsertForgetPasswordSettings(User.Domain.ForgetPasswordSettings)">
+            <summary>
+            Inserts ForgetPassword setting this should not be exposed outside.
+            </summary>
+            <param name="ForgetPasswordSettings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.AuthController.ForgetPassword(User.ViewModel.model.ForgetPassword)">
+            <summary>
+            Sends link to email to reset password
+            </summary>
+            <param name="forgetPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.AuthController.ResetForgetPassword(User.ViewModel.model.ResetForgetPassword)">
+            <summary>
+            Reset forget password through parameter sent to mail id link.
+            </summary>
+            <param name="resetForgetPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.AuthController.ResetPassword(User.ViewModel.model.ResetPasswordViewModel)">
+            <summary>
+            Reset password after the user logged in
+            </summary>
+            <param name="ResetPasswordViewModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.UserController.SignUp(User.ViewModel.UserSignUpModel)">
+            <summary>
+            User Sign Up Method.
+            </summary>
+            <param name="userSignUpModel"></param>
+            <returns></returns>
+        </member>
+        <member name="T:User.Api.Startup">
+            <summary>
+            Entry point of api
+            </summary>
+        </member>
+        <member name="M:User.Api.Startup.#ctor(Microsoft.Extensions.Configuration.IConfiguration)">
+            <summary>
+            Constructor
+            </summary>
+            <param name="configuration"></param>
+        </member>
+        <member name="P:User.Api.Startup.Configuration">
+            <summary>
+            Interface to access appsettings
+            </summary>
+        </member>
+        <member name="M:User.Api.Startup.ConfigureServices(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            This method gets called by the runtime. Use this method to add services to the container.
+            </summary>
+            <param name="services"></param>
+        </member>
+        <member name="M:User.Api.SwaggerDefaultValues.Apply(Microsoft.OpenApi.Models.OpenApiOperation,Swashbuckle.AspNetCore.SwaggerGen.OperationFilterContext)">
+            <summary>
+            Applies the filter to the specified operation using the given context.
+            </summary>
+            <param name="operation">The operation to apply the filter to.</param>
+            <param name="context">The current operation filter context.</param>
+        </member>
+        <member name="T:User.Api.ConfigureSwaggerOptions">
+            <summary>
+            Configures the Swagger generation options.
+            </summary>
+            <remarks>This allows API versioning to define a Swagger document per API version after the
+            <see cref="T:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider"/> service has been resolved from the service container.</remarks>
+        </member>
+        <member name="M:User.Api.ConfigureSwaggerOptions.#ctor(Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider)">
+            <summary>
+            Initializes a new instance of the <see cref="T:User.Api.ConfigureSwaggerOptions"/> class.
+            </summary>
+            <param name="provider">The <see cref="T:Microsoft.AspNetCore.Mvc.ApiExplorer.IApiVersionDescriptionProvider">provider</see> used to generate Swagger documents.</param>
+        </member>
+        <member name="M:User.Api.ConfigureSwaggerOptions.Configure(Swashbuckle.AspNetCore.SwaggerGen.SwaggerGenOptions)">
+            <inheritdoc />
+        </member>
+        <member name="T:User.Api.SwaggerRegistration">
+            <summary>
+            Swagger registration 
+            </summary>
+        </member>
+        <member name="M:User.Api.SwaggerRegistration.ConfigureSwagger(Microsoft.Extensions.DependencyInjection.IServiceCollection)">
+            <summary>
+            Registers swagger with api versioning
+            </summary>
+            <param name="services"></param>
+        </member>
+    </members>
+</doc>

@@ -6,21 +6,23 @@ services:
     build:
       context: .
       dockerfile: src/Services/User/User.Api/Dockerfile
-
   SenseiMongodb:
     container_name: SenseiMongodb
     image: mongo
   mongo-express:
     image: mongo-express
+  consul:
+    image: consul:latest
+    command: consul agent -dev -log-level=warn -ui -client=0.0.0.0
+    hostname: consul
+    container_name: consul
   portainer:
     image: portainer/portainer-ce
-
-  sensei_auth_service:
-    image: ${DOCKER_REGISTRY-}auth
+  senseigateway:
+    image: ${DOCKER_REGISTRY-}senseigatewayapi
     build:
       context: .
-      dockerfile: src/Services/Auth/Dockerfile
-
+      dockerfile: src/ApiGateway/Dockerfile
 volumes:
   SeseiMongoDb_data:
   portainer_data:

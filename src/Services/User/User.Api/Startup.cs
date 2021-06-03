@@ -18,53 +18,63 @@ using System.Threading.Tasks;
 using Microsoft.Extensions.Options;
 using Swashbuckle.AspNetCore.SwaggerGen;
 using Microsoft.AspNetCore.Mvc.ApiExplorer;
+using ConsolServiceDiscovery;
+using User.Infrastructure;
+using ResponseHandling;
+using System.Net.Mime;
+using User.Application.Service;
+using ServiceHeader;
 
 namespace User.Api
 {
+
+    /// <summary>
+    /// Entry point of api
+    /// </summary>
     public class Startup
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
+        /// <param name="configuration"></param>
         public Startup(IConfiguration configuration)
         {
             Configuration = configuration;
         }
 
+        /// <summary>
+        /// Interface to access appsettings
+        /// </summary>
         public IConfiguration Configuration { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
+        
+        /// <summary>
+        /// This method gets called by the runtime. Use this method to add services to the container.
+        /// </summary>
+        /// <param name="services"></param>
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
-            services.AddApiVersioning(
-               options =>
-               {
-                    // reporting api versions will return the headers "api-supported-versions" and "api-deprecated-versions"
-                    options.ReportApiVersions = true;
-
-                   options.AssumeDefaultVersionWhenUnspecified = true;
-               });
-            services.AddVersionedApiExplorer(
-                options =>
-                {
-                    // add the versioned api explorer, which also adds IApiVersionDescriptionProvider service
-                    // note: the specified format code will format the version as "'v'major[.minor][-status]"
-                    options.GroupNameFormat = "'v'VVV";
-
-                    // note: this option is only necessary when versioning by url segment. the SubstitutionFormat
-                    // can also be used to control the format of the API version in route templates
-                    options.SubstituteApiVersionInUrl = true;
-                });
-
-
-            services.AddTransient<IConfigureOptions<SwaggerGenOptions>, ConfigureSwaggerOptions>();
-            services.AddSwaggerGen(c =>
+            services.AddCors(options =>
             {
-                // add a custom operation filter which sets default values
-                c.OperationFilter<SwaggerDefaultValues>();
-
-                // integrate xml comments
-              //  c.IncludeXmlComments(XmlCommentsFilePath);
+                options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowCredentials().AllowAnyHeader(); });
             });
+            services.AddRequestInfo();
+            services.AddControllers();
+            services.AddLogicsServices();
+            services.AddAutoMapper(typeof(User.ViewModel.Mapper));
+            services.ConfigureSwagger();
+            services.Configure<ApiBehaviorOptions>(options =>
+            {
+                options.InvalidModelStateResponseFactory = (context) =>
+                {
+                    var result = new BadRequestObjectResult(context.ModelState);
+                    result.ContentTypes.Add(MediaTypeNames.Application.Json);
+                    result.ContentTypes.Add(MediaTypeNames.Application.Xml);
+                    return result;
+                };
+            });
+            services.AddHttpContextAccessor();
+           
 
             services.AddSingleton<IMongoClient>(c =>
             {
@@ -73,11 +83,16 @@ namespace User.Api
 
             services.AddScoped(c =>
             c.GetService<MongoClient>().StartSession());
+            services.AddInfrastructureServices();
+            services.AddConsul(Configuration.GetConsolServiceConfig());
+            ConfigureConsul(services);
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env, IApiVersionDescriptionProvider provider)
         {
+
+            app.UseRequestInfo();
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
@@ -91,25 +106,25 @@ namespace User.Api
                     }
                 });
             }
-
+            
+            app.UseResponseExceptionHandler();
             app.UseRouting();
-
             app.UseAuthorization();
-
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
         }
 
-        static string XmlCommentsFilePath
+      
+
+        private void ConfigureConsul(IServiceCollection services)
         {
-            get
-            {
-                var basePath = PlatformServices.Default.Application.ApplicationBasePath;
-                var fileName = typeof(Startup).GetTypeInfo().Assembly.GetName().Name + ".xml";
-                return Path.Combine(basePath, fileName);
-            }
+            var serviceConfig = Configuration.GetConsolServiceConfig();
+
+            services.RegisterServicesInConsul(serviceConfig);
         }
+
+      
     }
 }
