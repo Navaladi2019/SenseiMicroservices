@@ -1,0 +1,11 @@
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\bin\Debug\net5.0\Course.Infrastructure.deps.json
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\bin\Debug\net5.0\Course.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\bin\Debug\net5.0\ref\Course.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\bin\Debug\net5.0\Course.Infrastructure.pdb
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\Course.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\Course.Infrastructure.AssemblyInfoInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\Course.Infrastructure.AssemblyInfo.cs
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\Course.Infrastructure.csproj.CoreCompileInputs.cache
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\Course.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\ref\Course.Infrastructure.dll
+E:\Sensei\SenseiMicroservices\src\Services\Course\Course.Infrastructure\obj\Debug\net5.0\Course.Infrastructure.pdb

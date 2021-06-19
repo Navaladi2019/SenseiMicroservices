@@ -20,6 +20,7 @@ namespace User.Application.Service
         {
             services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<ITutorService, TutorService>();
             return services;
         }
     }

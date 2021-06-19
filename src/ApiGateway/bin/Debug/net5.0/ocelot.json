@@ -82,6 +82,9 @@
       "UpstreamPathTemplate": "/ResetPassword",
       "DownstreamHttpMethod": "Post",
       "UpstreamHttpMethod": [ "Post" ],
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JWTKeyValidation"
+      },
       "SwaggerKey": "sensei_user_service"
     },
     {
@@ -90,6 +93,40 @@
       "UpstreamPathTemplate": "/ForgetPassword",
       "DownstreamHttpMethod": "Post",
       "UpstreamHttpMethod": [ "Post" ],
+      "SwaggerKey": "sensei_user_service"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/User/CheckBecomeTutor",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/CheckBecomeTeacher",
+      "UpstreamHttpMethod": [ "Get" ],
+      "DownstreamHttpMethod": "Get",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JWTKeyValidation"
+      },
+      "AddHeadersToRequest": {
+        "UserSerialId": "Claims[UserId] > value > |",
+        "Role": "Claims[Role] > value > |",
+        "jti": "Claims[jti] > value > |"
+      },
+
+      "SwaggerKey": "sensei_user_service"
+    },
+    {
+      "DownstreamPathTemplate": "/v1/Tutor/BecomeTutor",
+      "ServiceName": "sensei_user_service",
+      "UpstreamPathTemplate": "/BecomeTutor",
+      "UpstreamHttpMethod": [ "Post" ],
+      "DownstreamHttpMethod": "Post",
+      "AuthenticationOptions": {
+        "AuthenticationProviderKey": "JWTKeyValidation"
+      },
+      "AddHeadersToRequest": {
+        "UserSerialId": "Claims[UserId] > value > |",
+        "Role": "Claims[Role] > value > |",
+        "jti": "Claims[jti] > value > |"
+      },
+
       "SwaggerKey": "sensei_user_service"
     }
 

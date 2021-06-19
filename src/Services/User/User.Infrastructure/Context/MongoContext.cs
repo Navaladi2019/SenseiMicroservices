@@ -17,13 +17,19 @@ namespace User.Infrastructure
             AuthTokenSettings = database.GetCollection<AuthTokenSetting>("AuthTokenSetting");
             UserSignIn = database.GetCollection<UserSignIn>("UserSignIn");
             ForgetPasswordSettings = database.GetCollection<ForgetPasswordSettings>("ForgetPasswordSettings");
+            Tutor = database.GetCollection<Tutor>("Tutor");
+            ResetPassword = database.GetCollection<ResetPassword>("ResetPassword");
         }
         public IMongoCollection<UserDto> User { get;  }
+
+        public IMongoCollection<Tutor> Tutor { get; }
 
         public IMongoCollection<AuthTokenSetting> AuthTokenSettings { get; }
 
         public IMongoCollection<UserSignIn> UserSignIn { get; }
 
         public IMongoCollection<ForgetPasswordSettings> ForgetPasswordSettings { get; }
+
+        public IMongoCollection <ResetPassword> ResetPassword { get; }
     }
 }

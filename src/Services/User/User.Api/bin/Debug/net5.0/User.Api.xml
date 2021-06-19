@@ -53,11 +53,30 @@
             <param name="ResetPasswordViewModel"></param>
             <returns></returns>
         </member>
+        <member name="M:User.Api.Controllers.TutorController.BecomeTutor(User.ViewModel.model.TutorBio)">
+            <summary>
+            checks if the user is already a tutor. If already a tutor then return a jwt with titor role.
+            </summary>
+            <returns></returns>
+        </member>
         <member name="M:User.Api.Controllers.UserController.SignUp(User.ViewModel.UserSignUpModel)">
             <summary>
             User Sign Up Method.
             </summary>
             <param name="userSignUpModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.UserController.SignUpAsTutor(User.ViewModel.UserSignUpModel)">
+            <summary>
+            User Sign Up Method.
+            </summary>
+            <param name="userSignUpModel"></param>
+            <returns></returns>
+        </member>
+        <member name="M:User.Api.Controllers.UserController.CheckBecomeTutor">
+            <summary>
+            checks if the user is already a tutor. If already a tutor then return a jwt with titor role.
+            </summary>
             <returns></returns>
         </member>
         <member name="T:User.Api.Startup">

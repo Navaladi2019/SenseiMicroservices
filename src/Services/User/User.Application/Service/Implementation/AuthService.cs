@@ -28,10 +28,11 @@ namespace User.Application.Service.Implementation
         public readonly IForgetPasswordSettingsRepository _forgetPasswordSettingsRepository;
         private readonly IConfiguration _configuration;
         private readonly RequestInfo _requestInfo;
+        private readonly IResetPasswordRepository _resetPasswordRepository;
         public AuthService(IAuthTokenSettingRepository authTokenSettingRepository,
             ISignInRepository signInRepository, IUserRepository userRepository,
             IForgetPasswordSettingsRepository forgetPasswordSettingsRepository, 
-            IConfiguration configuration,RequestInfo requestInfo)
+            IConfiguration configuration,RequestInfo requestInfo, IResetPasswordRepository resetPasswordRepository)
         {
             _authTokenSettingRepository = authTokenSettingRepository;
             _signInRepository = signInRepository;
@@ -39,6 +40,7 @@ namespace User.Application.Service.Implementation
             _forgetPasswordSettingsRepository = forgetPasswordSettingsRepository;
             _configuration = configuration;
             _requestInfo = requestInfo;
+            _resetPasswordRepository = resetPasswordRepository;
         }
 
      
@@ -46,19 +48,27 @@ namespace User.Application.Service.Implementation
         {
             ForgetPasswordSettings forgetPasswordSettings= await  _forgetPasswordSettingsRepository.GetSettingsByIdAsync(resetForgetPassword.Key);
             if(forgetPasswordSettings == null)throw new BusinessException("Link is invalid");
-            
-            string JsonString = NavalCrypto.DESDecrypt( resetForgetPassword.Token, forgetPasswordSettings.EncryptKey);
-            ForgetPasswordSerializer forgetPasswordSerializer = JsonSerializer.Deserialize<ForgetPasswordSerializer>(JsonString);
+            ForgetPasswordSerializer forgetPasswordSerializer = null;
+            try
+            {
+                string JsonString = NavalCrypto.DESDecrypt(resetForgetPassword.Token, forgetPasswordSettings.EncryptKey);
+                 forgetPasswordSerializer = JsonSerializer.Deserialize<ForgetPasswordSerializer>(JsonString);
+            }
+            catch (Exception)
+            {
+                throw new BusinessException("Link is invalid.");
+            }
+           
             if (forgetPasswordSerializer == null) throw new BusinessException("Link is invalid");
 
             UserDto userDto= await _userRepository.GetUserByIdAsync(forgetPasswordSerializer.UserId);
             if (userDto == null) throw new BusinessException("Link is invalid");
 
-            ResetPassword resetPassword = userDto.UserCredential.ResetPasswordKeys.FirstOrDefault(x => x.ResetPasswordKey == forgetPasswordSerializer.Key);
-            if (resetPassword == null) throw new BusinessException("Link has been used up or invalid");
+            ResetPassword resetPassword = await _resetPasswordRepository.GetResetPasswordByUserIdAndKey(forgetPasswordSerializer.UserId,forgetPasswordSerializer.Key);
+            if (resetPassword == null) throw new BusinessException("Link is invalid");
 
             if (resetPassword.ExpiresAt < DateTime.UtcNow) throw new BusinessException("Link has expired.");
-
+            if (resetPassword.IsUsed ) throw new BusinessException("Link has already been used.");
             userDto.UserCredential.SaltedPassword = NavalCrypto.HashText(resetForgetPassword.Password, userDto.UserCredential.Salt);
             await _userRepository.ResetForgetPassword(userDto.Id, resetPassword.ResetPasswordKey, userDto.UserCredential.SaltedPassword);
             string Token = await GenerateJwtAndInsertSignInHistory(userDto.Id, userDto.Roles);
@@ -70,7 +80,7 @@ namespace User.Application.Service.Implementation
         {
             SignInResponseModel signInResponseModel = new SignInResponseModel();
             signInResponseModel.AccessToken = Token;
-            signInResponseModel.EmailId = userDto.UserProfile.EmailId;
+            signInResponseModel.EmailId = userDto.EmailId;
             signInResponseModel.PreferredName = userDto.UserProfile.PreferredName;
             return await Task.FromResult(signInResponseModel);
         }
@@ -81,18 +91,18 @@ namespace User.Application.Service.Implementation
          UserDto userDto =  await _userRepository.GetUserBymailIdAsync(ForgetPassword.EmailId);
             if (userDto == null)
                 throw new BusinessException("Provided email is not registered with us.");
-            ResetPassword resetPassword = new ResetPassword();
+            ResetPassword resetPassword = new ResetPassword { UserId = userDto.Id};
 
           ForgetPasswordSettings forgetPasswordSettings= await  _forgetPasswordSettingsRepository.GetSettingAsync();
           resetPassword.ResetPasswordKey = Guid.NewGuid().ToString();
           resetPassword.ExpiresAt = DateTime.UtcNow.AddMinutes(forgetPasswordSettings.ExpireAfterMinutes);
           var obj = new ForgetPasswordSerializer  { Key= resetPassword.ResetPasswordKey,UserId= userDto.Id };
           string ResetToken =  NavalCrypto.DESEncrypt(JsonSerializer.Serialize(obj), forgetPasswordSettings.EncryptKey);
-          var param = new Dictionary<string, string> { { "Token", ResetToken },{ "Key", forgetPasswordSettings.Id } };
+          var param = new Dictionary<string, string> { { "token", ResetToken },{ "key", forgetPasswordSettings.Id } };
           var VerificationUrl = new Uri(QueryHelpers.AddQueryString(_configuration.GetValue<string>("ForgetPassword:Url"), param)).ToString();
           resetPassword.UrlForDevelopment = VerificationUrl;
-          await _userRepository.AddResetPassword(resetPassword, userDto.Id);
-          SendForgetPasswordEmailToQueue(userDto.UserProfile.EmailId, VerificationUrl, userDto.UserProfile.PreferredName, resetPassword.ExpiresAt);
+          await _resetPasswordRepository.Add(resetPassword);
+          SendForgetPasswordEmailToQueue(userDto.EmailId, VerificationUrl, userDto.UserProfile.PreferredName, resetPassword.ExpiresAt);
 
         }
 
@@ -127,7 +137,7 @@ namespace User.Application.Service.Implementation
            UserDto userDto = await _userRepository.GetUserBymailIdAsync(userSignInModel.EmailId);
             if (userDto == null)
                 throw new BusinessException("Provided email does not exists.");
-           string providedpassword=  NavalCrypto.HashText(userDto.UserCredential.Salt, userSignInModel.Password);
+           string providedpassword=  NavalCrypto.HashText( userSignInModel.Password, userDto.UserCredential.Salt);
             if (providedpassword != userDto.UserCredential.SaltedPassword)
                 throw new UnauthorizedAccessException("Password does not match.");
             string Token = await GenerateJwtAndInsertSignInHistory(userDto.Id, userDto.Roles);

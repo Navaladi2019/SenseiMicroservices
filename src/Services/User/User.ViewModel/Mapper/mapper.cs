@@ -5,6 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using User.Domain;
+using User.ViewModel.model;
 
 namespace User.ViewModel
 {
@@ -13,7 +14,7 @@ namespace User.ViewModel
         public Mapper()
         {
             CreateMap<UserSignUpModel, UserProfile>().ReverseMap();
-
+            CreateMap<TutorBio, Bio>().ReverseMap();
         }
     }
 }

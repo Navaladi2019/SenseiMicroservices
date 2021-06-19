@@ -25,18 +25,36 @@ namespace User.Infrastructure.Repositories
         public async Task<UserProfile> GetUserProfileBymailId(string email)
         {
 
-            var filter=  Builders<User.Domain.UserDto>.Filter.Eq(x => x.UserProfile.EmailId, email);
+            var filter=  Builders<User.Domain.UserDto>.Filter.Eq(x => x.EmailId, email);
             var projection = Builders<User.Domain.UserDto>.Projection.Include(x => x.UserProfile).Exclude(x=>x.Id);
 
             var user= await _mongoContext.User.Find(filter).Project<UserDto>(projection)?.FirstOrDefaultAsync();
             return user?.UserProfile;
         }
 
+        public async Task<UserDto> GetUserRolesByMailIsAsync(string email)
+        {
+            var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.EmailId, email);
+            var projection = Builders<User.Domain.UserDto>.Projection.Include(x => x.Roles);
+            return await _mongoContext.User.Find(filter).Project<UserDto>(projection)?.FirstOrDefaultAsync();
+        }
+
+
+        public async Task<List<string>> GetUserRolesByIdAsync(string Id)
+        {
+            var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.Id, Id);
+            var projection = Builders<User.Domain.UserDto>.Projection.Include(x => x.Roles).Exclude(x=>x.Id);
+           var user= await _mongoContext.User.Find(filter).Project<UserDto>(projection)?.FirstOrDefaultAsync();
+            return user?.Roles;
+        }
+
+
         public async Task<UserDto> GetUserBymailIdAsync(string email)
         {
-            var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.UserProfile.EmailId, email);
+            var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.EmailId, email);
             return await _mongoContext.User.Find(filter).FirstOrDefaultAsync();
         }
+
 
         public async Task<UserDto> GetUserByIdAsync(string Id)
         {
@@ -47,7 +65,7 @@ namespace User.Infrastructure.Repositories
         public async Task ResetForgetPassword(string id, string resetPasswordKey,string password)
         {
             var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.Id, id);
-            var update = Builders<UserDto>.Update.Set(x => x.UserCredential.SaltedPassword, password).PullFilter(y => y.UserCredential.ResetPasswordKeys, Builders<ResetPassword>.Filter.Eq(z => z.ResetPasswordKey, resetPasswordKey));
+            var update = Builders<UserDto>.Update.Set(x => x.UserCredential.SaltedPassword, password).Set(x=>x.UserProfile.IsEmailComfirmed,true);
             var result =   await _mongoContext.User.UpdateOneAsync(filter, update);
             if(result.ModifiedCount == 0)
             {
@@ -57,20 +75,21 @@ namespace User.Infrastructure.Repositories
             return;
         }
 
-        public async Task AddResetPassword(ResetPassword resetPassword, string Id)
-        {
-         var update=   Builders<User.Domain.UserDto>.Update.AddToSet(x => x.UserCredential.ResetPasswordKeys, resetPassword);
-         var filter = Builders<User.Domain.UserDto>.Filter.Eq(x =>x.Id, Id);
-         await _mongoContext.User.UpdateOneAsync(filter, update);
-         return;
-        }
+       
 
-
+        
         public async Task<UpdateResult> ResetPassword(string id, string saltedPassword)
         {
             var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.Id, id);
             var update = Builders<UserDto>.Update.Set(x => x.UserCredential.SaltedPassword, saltedPassword);
             return await _mongoContext.User.UpdateOneAsync(filter, update);
+        }
+
+        public async Task AddRole(string Role,string UserId)
+        {
+            var filter = Builders<User.Domain.UserDto>.Filter.Eq(x => x.Id, UserId);
+            var update = Builders<UserDto>.Update.AddToSet(x => x.Roles, Role);
+            await _mongoContext.User.UpdateOneAsync(filter, update);
         }
     }
 }

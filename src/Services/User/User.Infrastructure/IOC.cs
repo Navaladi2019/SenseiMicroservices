@@ -19,6 +19,8 @@ namespace User.Infrastructure
             services.AddScoped<ISignInRepository, SignInRepository>();
             services.AddScoped<IAuthTokenSettingRepository, AuthTokenSettingRepository>();
             services.AddScoped<IForgetPasswordSettingsRepository, ForgetPasswordSettingsRepository>();
+            services.AddScoped<ITutorRepository, TutorRepository>();
+            services.AddScoped<IResetPasswordRepository,ResetPasswordRepository>();
             return services;
         }
     }

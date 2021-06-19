@@ -41,9 +41,38 @@ namespace User.Api.Controllers
         }
 
 
+
+
+        /// <summary>
+        /// User Sign Up Method.
+        /// </summary>
+        /// <param name="userSignUpModel"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [Route("SignUpAsTutor")]
+        public async Task<ActionResult<ApiResponse<SignInResponseModel>>> SignUpAsTutor(UserSignUpModel userSignUpModel)
+        {
+            ApiResponse<SignInResponseModel> ApiResponse = new ApiResponse<SignInResponseModel>();
+            ApiResponse.Response = await _userService.RegisterUser(userSignUpModel);
+            ApiResponse.InfoMsg = "Sign Up successfull.";
+            return Ok(ApiResponse);
+        }
+
+      
+        /// <summary>
+        /// checks if the user is already a tutor. If already a tutor then return a jwt with titor role.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        [Route("CheckBecomeTutor")]
+        public async Task<ActionResult<string>> CheckBecomeTutor()
+        {
+            ApiResponse<string> ApiResponse = new ApiResponse<string>();
+            ApiResponse.Response = await _userService.CheckBecomeTutor();
+            return Ok(ApiResponse);
+        }
+
         
-
-
 
 
 

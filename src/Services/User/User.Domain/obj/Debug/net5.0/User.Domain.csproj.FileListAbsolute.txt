@@ -9,4 +9,3 @@ E:\Sensei\SenseiMicroservices\src\Services\User\User.Domain\obj\Debug\net5.0\Use
 E:\Sensei\SenseiMicroservices\src\Services\User\User.Domain\obj\Debug\net5.0\User.Domain.dll
 E:\Sensei\SenseiMicroservices\src\Services\User\User.Domain\obj\Debug\net5.0\ref\User.Domain.dll
 E:\Sensei\SenseiMicroservices\src\Services\User\User.Domain\obj\Debug\net5.0\User.Domain.pdb
-E:\Sensei\SenseiMicroservices\src\Services\User\User.Domain\obj\Debug\net5.0\User.Domain.csprojAssemblyReference.cache

@@ -38,6 +38,11 @@ namespace ApiGateway
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddDefaultPolicy(builder => { builder.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader(); });
+            });
+
             services.AddHttpContextAccessor();
             services.AddOcelot().AddConsul();
             services.AddMvcCore().AddApiExplorer();
@@ -65,6 +70,8 @@ namespace ApiGateway
                     };
 
             });
+
+            app.UseCors();
             app.UseRouting();
           //  app.UseAuthentication();
            app.UseAuthorization();
@@ -90,8 +97,8 @@ namespace ApiGateway
 
         private bool Authorize(HttpContext ctx)
         {
-            var aa = ctx.Items.DownstreamRoute();
-            if (ctx.Items.DownstreamRoute()?.AuthenticationOptions?.AuthenticationProviderKey == null) return true;
+           // var aa = ctx.Items.DownstreamRoute();
+            if (string.IsNullOrWhiteSpace(ctx.Items.DownstreamRoute()?.AuthenticationOptions?.AuthenticationProviderKey)) return true;
             else
             {
 

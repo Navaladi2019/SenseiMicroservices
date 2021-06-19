@@ -16,8 +16,12 @@ namespace User.Application
 
         public Task<UserDto> GetUserByIdAsync(string Id);
         public  Task AddUser(UserDto user);
-       public Task AddResetPassword(ResetPassword resetPassword, string Id);
         Task ResetForgetPassword(string id, string resetPasswordKey,string password);
         Task<UpdateResult> ResetPassword(string id, string saltedPassword);
+
+        Task<UserDto> GetUserRolesByMailIsAsync(string email);
+
+        Task<List<string>> GetUserRolesByIdAsync(string Id);
+        Task AddRole(string tutor,string UserId);
     }
 }

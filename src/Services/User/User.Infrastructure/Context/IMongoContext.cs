@@ -18,5 +18,9 @@ namespace User.Infrastructure
 
         public IMongoCollection<ForgetPasswordSettings> ForgetPasswordSettings { get; }
 
+        public IMongoCollection<Tutor> Tutor { get; }
+
+        public IMongoCollection<ResetPassword> ResetPassword { get; }
+
     }
 }
